@@ -21,18 +21,22 @@
               <div class="form-top-right"> <i class="fa fa-key"></i> </div>
             </div>
             <div class="form-bottom">
-              <form role="form" action="" method="post" class="login-form">
+              <form role="form" method="post" class="login-form">
                 {% csrf_token %}
-                <label>username:</label>
-                 <input type="text" name="username" id="username" required>
-
-
-                 <label>password:</label>
-                 <input type="text" name="password" id="password" required>
-
-
+                {% for field in form %}
+                  <p>
+                  {{ field.label_tag }}<br>
+                  {{ field }}
+                  </p>
+                {% endfor %}
                 <button type="submit" name="submitbutton" class="btn">Sign in</button>
-                
+                {% if form.non_field_errors %}
+                  <ul class='form-errors'>
+                    {% for error in form.non_field_errors %}
+                        <li id="loginerror">{{ error }}</li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
               </form>
             </div>
           </div>
