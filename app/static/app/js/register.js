@@ -1,9 +1,22 @@
-console.log("abcde");
-
 $('#registerform').submit(function() {
     // Get all the forms elements and their values in one step
-    console.log("hello world")
-    var values = $(this).serialize();
-    console.log(values);
+    //var values = $(this).serialize();
+
+    if ($('#password').val() == $('#cpassword').val()) {
+    	$.ajax({
+	        url: 'some-url',
+	        type: 'post',
+	        dataType: 'json',
+	        data: $('this').serialize(),
+	        success: function(data) {
+	        	console.log(data);
+	        }
+	    });
+	    //console.log(values);    	
+    } else {
+    	console.log("password not match")
+    }
+
+    
 
 });

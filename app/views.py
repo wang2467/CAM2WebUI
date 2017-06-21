@@ -70,6 +70,7 @@ def publications(request):
     return render(request, 'app/publications.html', context)
 
 def register(request):
+    """
     if request.method == 'POST':
         form1 = RegistrationForm(request.POST)
         form2 = AdditionalForm(request.POST)
@@ -122,14 +123,15 @@ def register(request):
             else:
                 sitekey = os.environ['RECAPTCHA_SITE_KEY']
     else:
-        form1 = RegistrationForm()
-        form2 = AdditionalForm()
-        if 'test' in sys.argv:
-            sitekey = os.environ['RECAPTCHA_TEST_SITE_KEY']
-        else:
-            sitekey = os.environ['RECAPTCHA_SITE_KEY']
+        """
+    #form1 = RegistrationForm()
+    #form2 = AdditionalForm()
+    if 'test' in sys.argv:
+        sitekey = os.environ['RECAPTCHA_TEST_SITE_KEY']
+    else:
+        sitekey = os.environ['RECAPTCHA_SITE_KEY']
 
-    return render(request, 'app/register.html', {'form1': form1, 'form2': form2, 'sitekey': sitekey})
+    return render(request, 'app/register.html', {'sitekey': sitekey})
 
 def email_confirmation_sent(request):
     return render(request, 'app/email_confirmation_sent.html')
